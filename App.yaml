@@ -12,4 +12,4 @@ service: dashapp-ae-v2
 handlers:
   - url: /.*
     script: auto
-    secure: alway
+    secure: always
