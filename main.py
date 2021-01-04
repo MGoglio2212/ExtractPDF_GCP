@@ -45,11 +45,10 @@ from FilterBanner import FilterBanner #, FilterBanner_SelezionaFolder
 
 # Normally, Dash creates its own Flask server internally. By creating our own,
 # we can create a route for downloading files directly:
-server = Flask(__name__)
-app = dash.Dash(server=server)
+app = Flask(__name__)
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED],
-                meta_tags=[{"name": "viewport", "content": "width = device-width"}])
+#app = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED],
+#                meta_tags=[{"name": "viewport", "content": "width = device-width"}])
 app.layout = html.Div([
     dcc.Location(id = 'url', refresh = False),
     html.Div(id = 'page-content')
@@ -304,6 +303,7 @@ def file_download_link(filename):
     return html.A(filename, href=location)
 '''
 
+'''
 #gestione degli indirizzi dalla navbar
 @app.callback(Output('page-content', 'children'),
             [Input('url', 'pathname')])
@@ -314,6 +314,11 @@ def display_page(pathname):
             return AppCaricaFile()
         else:
             return AppCaricaFile()
+'''
+
+@app.route('/')
+def lll():
+	return AppCaricaFile()
 
 '''
 #callback per caricamento file 
@@ -557,8 +562,8 @@ def Res_Codice(n_clicks, filename, commodity):
             return Out    
 '''    
 
-server = app.server
-app.config.suppress_callback_exceptions = True
+#server = app.server
+#app.config.suppress_callback_exceptions = True
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8000)
+    app.run(host='127.0.0.1', debug=True, port=8080)
