@@ -37,7 +37,7 @@ blobs = storage_client.list_blobs('pdf_cte')
 #ListaFileGCP = list()
 for blob in blobs:
     if blob.name.upper().endswith(".PDF"):
-        ListaFile += [filename]
+        ListaFile += [blob.name.upper()]
         Default = ListaFile[0]
 
 
